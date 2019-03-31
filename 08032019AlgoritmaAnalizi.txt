@@ -1,0 +1,38 @@
+def get_value_from_row_col(row, col): # O(n)
+    sum = 0
+    for i in range(len(row)):
+        sum = sum + row[i] * col[i]
+    return sum
+
+def get_row_from_matrix(matris,i):  # Matrisin satýrlarýný döndürüyor
+    return matris[i]
+
+def get_col_from_matrix(matris,j):  # Matrisin sutünlarýný döndürüyor
+    col = []
+    for row in matris:              # Matrisin ilk indisinde bulunan dizinin içerisine girdik
+        for indis in range(len(row)): # Girdiðim dizi içindeki elemanlara eriþiyorum
+            if(indis == j):            # Eðer sayacým istediðim sutüna denk geliyorsa bunu baþka bir diziye atýyorum
+                col.append(row[indis])
+    return col
+
+def get_col_from_matrixx(matris,j): # get_col_from_matrix metodunun daha hýzlý çalýþan hali
+    col = []
+    for row in matris:              
+            col.append(row[j])
+    return col
+
+def matrixMultiply(mX, mY):  # Bu kod için O(mnp), Kare matris için karmaþýklýk O(n^3)'tür.
+    mZ = []
+    for i in range(len(mX)):
+        mZ.append([])
+        for j in range(len(mY[0])):
+            satir = get_row_from_matrix(mX, i)
+            sutun = get_col_from_matrix(mY, j)
+            carpim = get_value_from_row_col(satir, sutun)
+            mZ[i].append(carpim)
+    return mZ
+
+a = [[1,2,3,4],[5,6,7,8],[1,2,3,4],[5,6,7,8]] # 4x4
+b = [[1,2],[3,4],[5,6],[7,8]]  # 4*2
+
+matrixMultiply(a,b)
