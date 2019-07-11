@@ -1,1 +1,1 @@
-# AlgoritmaAnalizi
+# AlgorithmAnalysis
